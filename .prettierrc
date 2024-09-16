@@ -3,7 +3,7 @@
   "useTabs": false,
   "arrowParens": "always",
   "singleQuote": true,
-  "endOfLine": "lf",
+  "endOfLine": "crlf",
   "bracketSameLine": false,
   "bracketSpacing": true,
   "semi": true,

@@ -1,10 +1,29 @@
 .task__card
   width: 100%
-  padding: 24px 16px
+  padding: 16px 24px
   margin-bottom: 16px
   background: #3636364f
-  border-radius: 0px
+  border-radius: 8px
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
   backdrop-filter: blur(4px)
   -webkit-backdrop-filter: blur(4px)
   // border: 1px solid rgba(255, 255, 255, 0.26)
+  &-header
+    font-size: 20px
+    font-weight: 400
+    margin-top: 8px
+    color: #ffffffa8
+  &-actions
+    display: flex
+    .tag
+      background-color: green,
+      padding: 2px 6px
+      margin-right: 8px
+      font-weight: bold
+      border-radius: 4px
+    .priority
+      margin-top: 4px
+      display: flex
+      align-items: center
+      &-span
+        margin-left: 4px
