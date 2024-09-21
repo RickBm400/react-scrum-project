@@ -14,22 +14,19 @@ import { mdiArrowUpBoldCircle } from '@mdi/js';
 export default function TaskCard() {
   return (
     <div className='task__card'>
-      <h3 className='task__card-header'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </h3>
-      <div className='task__card-actions'>
-        <span className='tag'>Easy</span>
-        <div className='priority'>
-          <Icon path={mdiArrowUpBoldCircle} size={1} />
-          <span className='priority-span'>High</span>
-        </div>
+      <div className='task__card-content'>
+        <h3>Incidence 2</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam illo eos
+          esse numquam deserunt itaque. Quae doloremque numquam quod, commodi.
+        </p>
       </div>
-      {/* <p className='task__card-description'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ex
-        dolorum incidunt tempore possimus? Doloribus earum tempore obcaecati
-        rem? Nulla, voluptatibus. Expedita ullam quam voluptatem blanditiis
-        explicabo dignissimos deleniti. Assumenda!
-      </p> */}
+      <div className='task__card-actions'>
+        <div className='tear' style={{ backgroundColor: `#D2956A` }} />
+        <div className='tear' style={{ backgroundColor: `#a26ad2` }} />
+      </div>
     </div>
   );
 }
+/* <Icon path={mdiArrowUpBoldCircle} size={1} /> */
+
