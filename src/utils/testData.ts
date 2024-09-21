@@ -1,26 +1,18 @@
-export const eraser_board = [
+export const task_board = [
   {
-    HEADER: "POR HACER",
-    insides: [{
-
-    }]
+    HEADER: 'POR HACER',
+    insides: [{}],
   },
   {
-    HEADER: "DETENIDO",
-    insides: [{
-
-    }]
+    HEADER: 'DETENIDO',
+    insides: [{}],
   },
   {
-    HEADER: "EN CURSO",
-    insides: [{
-
-    }]
+    HEADER: 'EN CURSO',
+    insides: [{}],
   },
   {
-    HEADER: "HECHOS",
-    insides: [{
-
-    }]
-  }
+    HEADER: 'HECHOS',
+    insides: [{}],
+  },
 ];

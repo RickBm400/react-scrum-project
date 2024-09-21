@@ -1,15 +1,6 @@
 import './taskCards.sass';
-import Icon from '@mdi/react';
-import { mdiArrowUpBoldCircle } from '@mdi/js';
-/**
- * add title
- * add tags for task
- * add minimal description
- * add priority
- * add task duration
- * add dialog for open task
- *
- */
+// import Icon from '@mdi/react';
+// import { mdiArrowUpBoldCircle } from '@mdi/js';
 
 export default function TaskCard() {
   return (
@@ -29,4 +20,13 @@ export default function TaskCard() {
   );
 }
 /* <Icon path={mdiArrowUpBoldCircle} size={1} /> */
+/**
+ * add title
+ * add tags for task
+ * add minimal description
+ * add priority
+ * add task duration
+ * add dialog for open task
+ *
+ */
 
