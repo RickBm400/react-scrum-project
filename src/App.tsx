@@ -3,9 +3,9 @@
 // import Colums from './sharedComponens/Columns/index';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { useEffect } from 'react';
-import Columns from './sharedComponens/Columns';
 import { setInitialData } from './store/features/taskcolums.state';
 import { task_board } from './utils/testData';
+import Columns from './sharedComponens/Columns';
 import './_global.sass';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <main className='main__container'>
-      <h3 className='title'></h3>
+      {/* <h3 className='title'>ola</h3> */}
       <div id='dashboard__table'>
         {taskGroup.value.map(({ HEADER, insides }) => (
           <Columns HEADER={HEADER} insides={insides} />
