@@ -1,18 +1,19 @@
 export const task_board = [
   {
-    HEADER: 'POR HACER',
+    HEADER: 'por hacer',
     insides: [{}],
   },
   {
-    HEADER: 'DETENIDO',
+    HEADER: 'detenido',
     insides: [{}],
   },
   {
-    HEADER: 'EN CURSO',
+    HEADER: 'En curso',
     insides: [{}],
   },
   {
-    HEADER: 'HECHOS',
+    HEADER: 'hechos',
     insides: [{}],
   },
 ];
+

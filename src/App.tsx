@@ -19,14 +19,11 @@ function App() {
   }, [Dispatch, taskGroup]);
 
   return (
-    <main className='main__container'>
-      {/* <h3 className='title'>ola</h3> */}
-      <div id='dashboard__table'>
-        {taskGroup.value.map(({ HEADER, insides }) => (
-          <Columns HEADER={HEADER} insides={insides} />
-        ))}
-      </div>
-    </main>
+    <div id='dashboard__table'>
+      {taskGroup.value.map(({ HEADER, insides }) => (
+        <Columns HEADER={HEADER} insides={insides} />
+      ))}
+    </div>
   );
 }
 
