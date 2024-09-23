@@ -4,7 +4,7 @@ interface Comment {
   timeStamp: string;
 }
 
-interface Inside {
+export interface Inside {
   title: string;
   description: string;
   storyPoints: number;
@@ -16,7 +16,7 @@ interface Inside {
   comments: Comment[];
 }
 
-interface TaskBoard {
+export interface TaskBoard {
   HEADER: 'por hacer' | 'detenido' | 'En curso' | 'hechos';
   insides: Inside[];
 }
