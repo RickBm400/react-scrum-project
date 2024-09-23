@@ -9,8 +9,11 @@
   background-color: #3f434b
   border-radius: 8px
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
+  cursor: pointer
   // backdrop-filter: blur(4px)
   // -webkit-backdrop-filter: blur(4px)
+  &-header
+    height: 20px
   &-content
     white-space: normal
     h3
@@ -24,9 +27,15 @@
       color: #B8B8B8
   &-actions
     display: flex
-    .tear
-      content: ' '
-      margin-right: 4px
-      width: 24px
-      height: 20px
-      border-radius: 20px
+    justify-content: space-between
+    &-badges
+      display: flex
+      .badge
+        content: ' '
+        margin-right: 4px
+        width: 24px
+        height: 20px
+        border-radius: 20px
+    svg.priority-icon
+      path
+        filter: brightness(67%)

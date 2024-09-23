@@ -4,6 +4,13 @@ interface Comment {
   timeStamp: string;
 }
 
+export type category =
+  | 'FRONT_END'
+  | 'BACK_END'
+  | 'DESIGN'
+  | 'CI_CD'
+  | 'DOCUMENTATION';
+
 export interface Inside {
   title: string;
   description: string;
@@ -12,7 +19,7 @@ export interface Inside {
   createdAt: string;
   dueDate: string;
   priority: 'HIGH' | 'MEDIUM' | 'LOW';
-  category: 'FRONT_END' | 'BACK_END' | 'FULL_STACK' | 'DESIGN';
+  category: category[];
   comments: Comment[];
 }
 
@@ -33,7 +40,7 @@ export const task_board: TaskBoard[] = [
         createdAt: '2024-09-22',
         dueDate: '2024-10-05',
         priority: 'HIGH',
-        category: 'FRONT_END',
+        category: ['FRONT_END', 'BACK_END', 'DOCUMENTATION'],
         comments: [
           {
             author: 'Jose JB',
@@ -61,7 +68,7 @@ export const task_board: TaskBoard[] = [
         createdAt: '2024-09-22',
         dueDate: '2024-10-12',
         priority: 'MEDIUM',
-        category: 'BACK_END',
+        category: ['BACK_END', 'FRONT_END'],
         comments: [
           {
             author: 'Jose JB',
@@ -94,7 +101,7 @@ export const task_board: TaskBoard[] = [
         createdAt: '2024-09-20',
         dueDate: '2024-10-15',
         priority: 'HIGH',
-        category: 'BACK_END',
+        category: ['BACK_END', 'DOCUMENTATION'],
         comments: [
           {
             author: 'Jose JB',
@@ -126,7 +133,7 @@ export const task_board: TaskBoard[] = [
         createdAt: '2024-09-21',
         dueDate: '2024-10-10',
         priority: 'MEDIUM',
-        category: 'FULL_STACK',
+        category: ['FRONT_END', 'BACK_END', 'DESIGN'],
         comments: [
           {
             author: 'Jose JB',
@@ -158,7 +165,7 @@ export const task_board: TaskBoard[] = [
         createdAt: '2024-09-15',
         dueDate: '2024-09-18',
         priority: 'LOW',
-        category: 'DESIGN',
+        category: ['DESIGN', 'BACK_END'],
         comments: [
           {
             author: 'Jose JB',
