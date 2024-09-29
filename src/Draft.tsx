@@ -26,7 +26,8 @@ export default function Draft() {
   const [position, setPosition] = useState<coordinates>({ x: 0, y: 0 });
   const [itemColums, setItemColums] = useState<item[]>(test);
   const columItemsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const phantomCard = useRef<HTMLDivElement | null>(null);
+  // const phantomCard = useRef<HTMLDivElement | null>(null);
+  const [onDragIndex, setOndragIndex] = useState<number | null>(null);
 
   const handlePosition = (event: MouseEvent) => {
     event.preventDefault();
@@ -38,25 +39,46 @@ export default function Draft() {
     index: number,
   ) {
     console.log('startDragg');
-    // const itemOnDrag = itemColums[index];
 
     const card = event.currentTarget;
     const clone = card.cloneNode(true) as HTMLDivElement;
-
     clone.style.position = 'absolute';
-    clone.style.top = '-1000px'; // Para que no aparezca en el viewport
-    clone.style.pointerEvents = 'none';
+    clone.style.width = '400px';
+    clone.style.opacity = '1';
+    clone.style.top = '-1000px';
 
     document.body.appendChild(clone);
     event.dataTransfer.setDragImage(clone, 0, 0);
+    setOndragIndex(index);
   }
 
-  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-    console.log('ola');
+  const handleDrop = (index: number) => {
+    if (onDragIndex != null) {
+      setItemColums((prevColumns) => {
+        const updatedColumns = [...prevColumns];
+
+        // Intercambiar los elementos de los índices `index` y `onDragIndex`
+        const temp = updatedColumns[index];
+        updatedColumns[index] = updatedColumns[onDragIndex];
+        updatedColumns[onDragIndex] = temp;
+
+        return updatedColumns;
+      });
+    }
   };
 
+  /**
+   * Personalizar la acción de las demás cards
+   */
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
+  /**
+   * Cuando se termina el drag event
+   */
   const handleDragEnd = () => {
+    setOndragIndex(null);
     console.log('endDraggun');
   };
 
@@ -79,6 +101,7 @@ export default function Draft() {
             className='draft__column-item'
             onDragStart={(e) => handleDragStart(e, index)}
             onDragEnd={() => handleDragEnd()}
+            onDrop={() => handleDrop(index)}
             onDragOver={handleDragOver}>
             {item.name}
           </div>
@@ -93,7 +116,9 @@ export default function Draft() {
           }}>
           hell ya
         </div> */}
-      <div className='mouse-coordinates'>{JSON.stringify(position)}</div>
+      <div className='mouse-coordinates'>
+        {JSON.stringify(position) + '\n' + onDragIndex}
+      </div>
     </section>
   );
 }
