@@ -20,12 +20,11 @@ function App() {
 
   return (
     <div id='dashboard__table'>
-      {taskGroup.value.map(({ HEADER, insides }) => (
-        <Columns HEADER={HEADER} insides={insides} />
+      {taskGroup.value.map(({ header, insides }, index) => (
+        <Columns key={index} header={header} insides={insides} />
       ))}
     </div>
   );
 }
 
 export default App;
-
