@@ -15,9 +15,9 @@ const badge_colors: Record<category, string> = {
   DESIGN: '#87c884',
 };
 
-type priority = Pick<Inside, 'priority'>;
+type priority = Pick<Inside, 'priority'>['priority'];
 
-function getIcon(priority: priority['priority']): ReactNode {
+function getIcon(priority: priority): ReactNode {
   const iconList: Record<string, string> = {
     HIGH: mdiArrowUpBoldBox,
     MEDIUM: mdiMinusBox,

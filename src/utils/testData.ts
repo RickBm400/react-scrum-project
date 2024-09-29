@@ -28,7 +28,7 @@ export interface TaskBoard {
   insides: Inside[];
 }
 
-export const task_board: TaskBoard[] = [
+const task_board: TaskBoard[] = [
   {
     HEADER: 'por hacer',
     insides: [
@@ -188,3 +188,4 @@ export const task_board: TaskBoard[] = [
   },
 ];
 
+export default task_board;

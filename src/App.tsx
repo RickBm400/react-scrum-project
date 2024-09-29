@@ -4,7 +4,7 @@
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { useEffect } from 'react';
 import { setInitialData } from './store/features/taskcolums.state';
-import { task_board } from './utils/testData';
+import taskBoard from './utils/testData';
 import Columns from './sharedComponens/Columns';
 import './_global.sass';
 
@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     if (taskGroup.value.length == 0) {
-      Dispatch(setInitialData(task_board));
+      Dispatch(setInitialData(taskBoard));
     }
   }, [Dispatch, taskGroup]);
 
