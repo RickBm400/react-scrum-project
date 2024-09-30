@@ -21,6 +21,18 @@ const test: item[][] = [
     {
       name: 'tarea3',
     },
+    {
+      name: 'tarea4',
+    },
+    {
+      name: 'tarea5',
+    },
+    {
+      name: 'tarea6',
+    },
+    {
+      name: 'tarea7',
+    },
   ],
   [],
 ];
@@ -51,44 +63,26 @@ export default function Draft() {
     clone.style.top = '-1000px';
 
     document.body.appendChild(clone);
-    event.dataTransfer.setData('clone', clone.id);
+    // event.dataTransfer.setData('clone', clone.id);
     setOndragIndex(cardIndex);
   }
-
-  // const handleDrop = (index: number) => {
-  //   if (onDragIndex != null) {
-  //     setItemColums((prevColumns) => {
-  //       const updatedColumns = [...prevColumns];
-
-  //       // Intercambiar los elementos de los índices `index` y `onDragIndex`
-  //       const temp = updatedColumns[index];
-  //       updatedColumns[index] = updatedColumns[onDragIndex];
-  //       updatedColumns[onDragIndex] = temp;
-
-  //       return updatedColumns;
-  //     });
-  //   }
-  // };
 
   /**
    * Personalizar la acción de las demás cards
    */
   const cardDragOver = (event?: React.DragEvent<HTMLDivElement>) => {
     event?.preventDefault();
-    console.log('pussy on card');
   };
   const columnDragOver = (event?: React.DragEvent<HTMLDivElement>) => {
     event?.preventDefault();
-    console.log('pussy on column');
   };
 
-  const handleColumnDrop = (
-    event: React.DragEvent<HTMLDivElement>,
-    index: number,
-  ) => {
+  /**
+   * Handle column drop element
+   * @param index // receibe column index and return updated columns with cards
+   */
+  const handleColumnDrop = (index: number) => {
     console.log('drop at column');
-    console.log(event);
-    console.log(index);
     const [columnIndex, elementIndex] = onDragIndex;
     const cop = [...itemColums];
     cop[index].push(cop[columnIndex][elementIndex]);
@@ -96,7 +90,28 @@ export default function Draft() {
   };
 
   /**
-   * Cuando se termina el drag event
+   * Handle card drop
+   * // use this when instead of drop element on column, drops on another card element
+   * @param cardPositionIndex
+   * @type {number[]}
+   */
+  const handleCardDrop = (
+    event: React.DragEvent<HTMLDivElement>,
+    [columnIndex, elementIndex]: number[],
+  ) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const cop = [...itemColums];
+    const [sourceColumn, sourceIndex] = onDragIndex;
+    const newInsertion = cop[sourceColumn][sourceIndex];
+    cop[sourceColumn].splice(sourceIndex, 1);
+    cop[columnIndex].splice(elementIndex, 0, newInsertion);
+    console.log('pusi drop cards');
+  };
+
+  /**
+   * reset values to default on drag end trigger
    */
   const handleDragEnd = () => {
     setOndragIndex([0, 0]);
@@ -116,7 +131,7 @@ export default function Draft() {
         <div
           className='draft__column'
           key={columnIndex}
-          onDrop={(e) => handleColumnDrop(e, columnIndex)}
+          onDrop={() => handleColumnDrop(columnIndex)}
           onDragOver={columnDragOver}
         >
           {column.map((item, index) => (
@@ -129,21 +144,13 @@ export default function Draft() {
               onDragStart={(e) => handleDragStart(e, [columnIndex, index])}
               onDragOver={() => cardDragOver()}
               onDragEnd={() => handleDragEnd()}
+              onDrop={(e) => handleCardDrop(e, [columnIndex, index])}
             >
               {item.name}
             </div>
           ))}
         </div>
       ))}
-      {/* <div
-          ref={phantomCard}
-          style={{
-            position: 'absolute',
-            top: '-1000px',
-            backgroundColor: 'green',
-          }}>
-          hell ya
-        </div> */}
       <div className='mouse-coordinates'>
         {JSON.stringify(position) + '\n' + onDragIndex}
       </div>
