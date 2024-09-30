@@ -10,24 +10,27 @@ interface coordinates {
   y: number;
 }
 
-const test: item[] = [
-  {
-    name: 'tarea1',
-  },
-  {
-    name: 'tarea2',
-  },
-  {
-    name: 'tarea3',
-  },
+const test: item[][] = [
+  [
+    {
+      name: 'tarea1',
+    },
+    {
+      name: 'tarea2',
+    },
+    {
+      name: 'tarea3',
+    },
+  ],
+  [],
 ];
 
 export default function Draft() {
   const [position, setPosition] = useState<coordinates>({ x: 0, y: 0 });
-  const [itemColums, setItemColums] = useState<item[]>(test);
+  const [itemColums, setItemColums] = useState<item[][]>(test);
+  const [onDragIndex, setOndragIndex] = useState<number>(-1);
   const columItemsRef = useRef<(HTMLDivElement | null)[]>([]);
   // const phantomCard = useRef<HTMLDivElement | null>(null);
-  const [onDragIndex, setOndragIndex] = useState<number | null>(null);
 
   const handlePosition = (event: MouseEvent) => {
     event.preventDefault();
@@ -48,37 +51,49 @@ export default function Draft() {
     clone.style.top = '-1000px';
 
     document.body.appendChild(clone);
-    event.dataTransfer.setDragImage(clone, 0, 0);
+    event.dataTransfer.setData('clone', clone.id);
     setOndragIndex(index);
   }
 
-  const handleDrop = (index: number) => {
-    if (onDragIndex != null) {
-      setItemColums((prevColumns) => {
-        const updatedColumns = [...prevColumns];
+  // const handleDrop = (index: number) => {
+  //   if (onDragIndex != null) {
+  //     setItemColums((prevColumns) => {
+  //       const updatedColumns = [...prevColumns];
 
-        // Intercambiar los elementos de los índices `index` y `onDragIndex`
-        const temp = updatedColumns[index];
-        updatedColumns[index] = updatedColumns[onDragIndex];
-        updatedColumns[onDragIndex] = temp;
+  //       // Intercambiar los elementos de los índices `index` y `onDragIndex`
+  //       const temp = updatedColumns[index];
+  //       updatedColumns[index] = updatedColumns[onDragIndex];
+  //       updatedColumns[onDragIndex] = temp;
 
-        return updatedColumns;
-      });
-    }
-  };
+  //       return updatedColumns;
+  //     });
+  //   }
+  // };
 
   /**
    * Personalizar la acción de las demás cards
    */
-  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
+  const cardDragOver = (event?: React.DragEvent<HTMLDivElement>) => {
+    event?.preventDefault();
+    console.log('pussy on card');
+  };
+  const columnDragOver = (event?: React.DragEvent<HTMLDivElement>) => {
+    event?.preventDefault();
+    console.log('pussy on column');
+  };
+
+  const handleColumnDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    console.log('drop at column');
+    console.log(event.currentTarget);
+    const cop = [...itemColums];
+    cop[1].push(cop[0][1]);
   };
 
   /**
    * Cuando se termina el drag event
    */
   const handleDragEnd = () => {
-    setOndragIndex(null);
+    setOndragIndex(-1);
     console.log('endDraggun');
   };
 
@@ -91,18 +106,42 @@ export default function Draft() {
 
   return (
     <section id='draft__container'>
-      <div className='draft__column'>
-        {itemColums.map((item, index) => (
+      <div
+        className='draft__column'
+        onDrop={handleColumnDrop}
+        onDragOver={columnDragOver}
+      >
+        {itemColums[0].map((item, index) => (
           <div
+            draggable
             key={index}
             ref={(elem) => (columItemsRef.current[index] = elem)}
-            id={`item-${index}`}
-            draggable
+            id={`item-col0-${index}`}
             className='draft__column-item'
             onDragStart={(e) => handleDragStart(e, index)}
+            onDragOver={() => cardDragOver()}
             onDragEnd={() => handleDragEnd()}
-            onDrop={() => handleDrop(index)}
-            onDragOver={handleDragOver}>
+          >
+            {item.name}
+          </div>
+        ))}
+      </div>
+      <div
+        className='draft__column'
+        onDrop={handleColumnDrop}
+        onDragOver={columnDragOver}
+      >
+        {itemColums[1].map((item, index) => (
+          <div
+            draggable
+            key={index}
+            ref={(elem) => (columItemsRef.current[index] = elem)}
+            id={`item-col1-${index}`}
+            className='draft__column-item'
+            onDragStart={(e) => handleDragStart(e, index)}
+            onDragOver={() => cardDragOver()}
+            onDragEnd={() => handleDragEnd()}
+          >
             {item.name}
           </div>
         ))}

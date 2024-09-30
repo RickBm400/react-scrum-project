@@ -40,10 +40,11 @@ export default function TaskCard({
       </div>
       <div className='task__card-actions'>
         <div className='task__card-actions-badges'>
-          {category.map((badge) => (
+          {category.map((badge, index) => (
             <div
               className='badge'
               style={{ backgroundColor: badge_colors[badge] }}
+              key={index}
             />
           ))}
         </div>
@@ -62,4 +63,3 @@ export default function TaskCard({
  * add dialog for open task
  *
  */
-
