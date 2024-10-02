@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import './sass/draft.sass';
+import './sass/folders/draft.sass';
 
 interface item {
   name: string;
@@ -39,7 +39,7 @@ const test: item[][] = [
 
 export default function Draft() {
   const [position, setPosition] = useState<coordinates>({ x: 0, y: 0 });
-  const [itemColums, setItemColums] = useState<item[][]>(test);
+  const [itemColums] = useState<item[][]>(test);
   const [onDragIndex, setOndragIndex] = useState<number[]>([0, 0]);
   const columItemsRef = useRef<(HTMLDivElement | null)[]>([]);
   // const phantomCard = useRef<HTMLDivElement | null>(null);
@@ -157,4 +157,3 @@ export default function Draft() {
     </section>
   );
 }
-

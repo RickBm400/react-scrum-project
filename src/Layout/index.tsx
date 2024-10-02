@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import './layout.sass';
+import '../sass/folders/layout.sass';
 
 export default function Layout() {
   return (
@@ -9,4 +9,3 @@ export default function Layout() {
     </div>
   );
 }
-

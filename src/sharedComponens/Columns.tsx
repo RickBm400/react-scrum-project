@@ -1,6 +1,6 @@
-import './columns.sass';
-import { Inside } from '../../utils/testData';
-import TaskCard from '../TaskCard';
+import { Inside } from '../utils/testData';
+import TaskCard from './TaskCard.tsx';
+import '../sass/folders/columns.sass';
 
 interface props {
   header: string;
@@ -13,7 +13,8 @@ export default function Columns({ header, insides = [] }: props) {
       <h3 className='columns__header'>{header}</h3>
       <div
         className='insides'
-        style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>
+        style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}
+      >
         {insides.map((inside: Inside, index) => (
           <TaskCard {...inside} key={index} />
         ))}
@@ -21,4 +22,3 @@ export default function Columns({ header, insides = [] }: props) {
     </div>
   );
 }
-
