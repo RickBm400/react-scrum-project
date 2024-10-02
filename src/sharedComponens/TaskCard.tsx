@@ -1,5 +1,5 @@
 import { Inside, category } from '../utils/testData';
-import '../sass/folders/taskCards.sass';
+import '@sass/folders/taskCards.sass';
 import Icon from '@mdi/react';
 // import { mdiArrowUpBoldCircle } from '@mdi/js';
 import { mdiArrowUpBoldBox } from '@mdi/js';

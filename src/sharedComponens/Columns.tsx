@@ -1,6 +1,6 @@
 import { Inside } from '../utils/testData';
 import TaskCard from './TaskCard.tsx';
-import '../sass/folders/columns.sass';
+import '@sass/folders/columns.sass';
 
 interface props {
   header: string;
