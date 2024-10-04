@@ -21,7 +21,12 @@ function App() {
   return (
     <div id='dashboard__table'>
       {taskGroup.value.map(({ header, insides }, index) => (
-        <Columns key={index} header={header} insides={insides} />
+        <Columns
+          key={index}
+          columnId={index}
+          header={header}
+          insides={insides}
+        />
       ))}
     </div>
   );
