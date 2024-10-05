@@ -20,10 +20,20 @@ export const taskColumnSlice = createSlice({
       const { column = -1, row = -1, inside = {} } = payload;
       state.value[column].insides[row] = inside;
     },
-    // deleteTaskFromColumn: (state, { payload }) => {},
+    /**
+     * Delete selected node on drag start and remove from source column after
+     * being reasigned to new position
+     * @param state - scrum dashboard
+     * @param action - { column, row }
+     */
+    deleteTaskFromColumn: (state, { payload }) => {
+      const { column = -1, row = -1 } = payload;
+      state.value[column].insides.splice(row, 1);
+    },
   },
 });
 
 export default taskColumnSlice.reducer;
-export const { setInitialData, addTaskToColumn } = taskColumnSlice.actions;
+export const { setInitialData, addTaskToColumn, deleteTaskFromColumn } =
+  taskColumnSlice.actions;
 

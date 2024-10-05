@@ -2,7 +2,10 @@ import React from 'react';
 import { Inside } from '../utils/testData';
 import TaskCard from './TaskCard.tsx';
 import { useAppDispatch, useAppSelector } from '../store/hooks.ts';
-import { addTaskToColumn } from '../store/features/taskcolums.state.ts';
+import {
+  addTaskToColumn,
+  deleteTaskFromColumn,
+} from '../store/features/taskcolums.state.ts';
 import '@sass/folders/columns.sass';
 
 interface props {
@@ -27,6 +30,12 @@ export default function Columns({ header, insides = [], columnId }: props) {
         column: columnId,
         row: taskGroup[columnId].insides.length,
         inside: taskGroup[column].insides[row],
+      }),
+    );
+    Dispatch(
+      deleteTaskFromColumn({
+        column: column,
+        row: row,
       }),
     );
   }
