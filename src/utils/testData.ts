@@ -24,7 +24,7 @@ export interface Inside {
 }
 
 export interface TaskBoard {
-  HEADER: 'por hacer' | 'detenido' | 'En curso' | 'hechos';
+  HEADER: 'por hacer' | 'detenido' | 'En curso' | 'hechos' | '';
   insides: Inside[];
 }
 

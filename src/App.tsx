@@ -10,24 +10,37 @@ import '@sass/_global.sass';
 
 function App() {
   const Dispatch = useAppDispatch();
-  const { taskGroup } = useAppSelector((state) => state);
+  const taskGroup = useAppSelector((state) => state.taskGroup);
+  // temporary
+  const cardHold = useAppSelector((state) => state.cardHold);
 
   useEffect(() => {
-    if (taskGroup.value.length == 0) {
+    if (taskGroup.length == 0) {
       Dispatch(setInitialData(taskBoard));
     }
   }, [Dispatch, taskGroup]);
 
   return (
     <div id='dashboard__table'>
-      {taskGroup.value.map(({ header, insides }, index) => (
+      {taskGroup.map(({ HEADER, insides }, index) => (
         <Columns
           key={index}
           columnId={index}
-          header={header}
+          header={HEADER}
           insides={insides}
         />
       ))}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '30px',
+          right: '30px',
+          color: 'white',
+          fontSize: '1.7rem',
+        }}
+      >
+        {JSON.stringify(cardHold)}
+      </div>
     </div>
   );
 }
