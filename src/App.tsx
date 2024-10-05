@@ -10,7 +10,7 @@ import '@sass/_global.sass';
 
 function App() {
   const Dispatch = useAppDispatch();
-  const taskGroup = useAppSelector((state) => state.taskGroup);
+  const taskGroup = useAppSelector((state) => state.taskGroup.value);
   // temporary
   const cardHold = useAppSelector((state) => state.cardHold);
 
