@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { setInitialData } from './store/features/taskcolums.state';
 import taskBoard from './utils/testData';
 import Columns from './sharedComponens/Columns';
-import '@sass/_global.sass';
 
 function App() {
   const Dispatch = useAppDispatch();

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import './sass/folders/draft.sass';
 
 interface item {
   name: string;

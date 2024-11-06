@@ -4,6 +4,7 @@ import { store } from './store/index.ts';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes.tsx';
+import '@sass/folders/index.sass';
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
