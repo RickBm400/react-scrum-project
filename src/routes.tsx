@@ -1,23 +1,30 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import App from './App';
-import Draft from './Draft';
 import Layout from './Layout';
+import Backlog from './Backlog';
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: '/dashboard',
         element: <App />,
       },
       {
-        path: '/test-dnd',
-        element: <Draft />,
+        path: '/backlog',
+        element: <Backlog />,
+      },
+      // {
+      //   path: '/test-dnd',
+      //   element: <Draft />,
+      // },
+      {
+        path: '*',
+        element: <Navigate to={'dashboard'} />,
       },
     ],
   },
 ]);
 
 export default router;
-
