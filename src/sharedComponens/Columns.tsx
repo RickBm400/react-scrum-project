@@ -6,7 +6,6 @@ import {
   addTaskToColumn,
   deleteTaskFromColumn,
 } from '../store/features/taskcolums.state.ts';
-import '@sass/folders/columns.sass';
 
 interface props {
   header: string;

@@ -1,6 +1,3 @@
-// import { eraser_board } from './utils/testData';
-// import { useEffect } from 'react';
-// import Colums from './sharedComponens/Columns/index';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { useEffect } from 'react';
 import { setInitialData } from './store/features/taskcolums.state';
