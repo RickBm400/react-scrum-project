@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import { mdiDotsHorizontal } from '@mdi/js';
+import Icon from '@mdi/react';
 
 const pathArray = [
   {
-    label: 'Dashboard',
-    path: '/dashboard',
+    label: 'Backlog',
+    path: '/backlog',
     active: false,
   },
   {
-    label: 'Backlog',
-    path: '/backlog',
+    label: 'Dashboard',
+    path: '/dashboard',
     active: false,
   },
 ];
@@ -33,19 +35,23 @@ export default function Layout() {
   return (
     <div id='navbar-container'>
       <nav className='navbar'>
-        <ul>
+        <div>
           {routePaths.map(({ label, path, active = false }, i) => {
             return (
-              <li
-                className={`link ${active ? 'active' : ''}`}
-                onClick={() => activePath(path)}
+              <Link
+                to={path}
                 key={i}
+                onClick={() => activePath(path)}
+                className={`link ${active ? 'active' : ''}`}
               >
-                <Link to={path}>{label}</Link>
-              </li>
+                {label}
+              </Link>
             );
           })}
-        </ul>
+        </div>
+        <div className='handle__menu'>
+          <Icon path={mdiDotsHorizontal} size={1} />
+        </div>
       </nav>
       <div id='outlet_container'>
         <Outlet />

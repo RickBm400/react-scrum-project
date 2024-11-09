@@ -12,22 +12,27 @@
         color: white
         padding-inline: 24px
         padding-block: 24px
-        ul
-            list-style: none
-            padding: 0
-            li
-                padding: 8px
+        display: flex
+        flex-direction: column
+        div
+            display: flex
+            flex-direction: column
+            a
+                margin-bottom: 8px
+                text-decoration: none
+                color: white
                 font-size: 18px
-                margin-bottom: 12px
-            li:hover
+                padding-block: 10px
+                padding-left: 8px
+            a:hover
                 background-color: #86808041
                 border-radius: 8px
-            li.active
-                border-radius: 8px
+            a.active
                 background-color: #868080dd
-            a
-                color: white
-                text-decoration: none
+                border-radius: 8px
+        .handle__menu
+            margin-top: auto
+
     #outlet_container
         overflow-x: auto
         flex-grow: 1
