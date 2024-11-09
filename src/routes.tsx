@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import App from './App';
-import Layout from './Layout';
-import Backlog from './Backlog';
+import Dashboard from './pages/Dashboard';
+import Layout from './layouts';
+import Backlog from './pages/Backlog';
 
 const router = createBrowserRouter([
   {
@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <App />,
+        element: <Dashboard />,
       },
       {
         path: '/backlog',
