@@ -4,8 +4,8 @@ import Icon from '@mdi/react';
 import { mdiArrowUpBoldBox } from '@mdi/js';
 import { mdiArrowDownBoldBox } from '@mdi/js';
 import { mdiMinusBox } from '@mdi/js';
-import { ReactNode } from 'react';
-import { useAppDispatch } from '../store/hooks';
+import React, { ReactNode } from 'react';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setCardState, resetCardState } from '../store/features/cardHold.state';
 
 const badge_colors: Record<category, string> = {
@@ -41,9 +41,10 @@ export default function TaskCard({
   priority,
 }: cardTypes) {
   const Dispatch = useAppDispatch();
+  const cardHold = useAppSelector((state) => state.cardHold);
   // const cardHold = useAppSelector((state) => state.cardHold);
   /**
-   * handle drag even of current card
+   * handle drag event of current card
    * @param event get current node info
    */
   function handleDragStrart(event: React.DragEvent<HTMLDivElement>) {
@@ -60,6 +61,12 @@ export default function TaskCard({
     document.body.appendChild(cardClone);
   }
 
+  function handleCardDrop(event: React.DragEvent<HTMLDivElement>) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(cardHold);
+  }
+
   function handleDragEnd() {
     Dispatch(resetCardState());
   }
@@ -71,11 +78,8 @@ export default function TaskCard({
       draggable
       onDragStart={handleDragStrart}
       onDragEnd={handleDragEnd}
+      onDrop={(e) => handleCardDrop(e)}
     >
-      {/* onDragStart={}
-      onDragOver={}
-      onDrop={}
-      onDragEnd={} */}
       <div className='task__card-content'>
         <h3>{title}</h3>
         <p>{description}</p>
@@ -95,13 +99,3 @@ export default function TaskCard({
     </div>
   );
 }
-
-/**
- * add title
- * add tags for task
- * add minimal description
- * add priority
- * add task duration
- * add dialog for open task
- *
- */
